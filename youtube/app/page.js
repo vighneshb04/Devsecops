@@ -6,7 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import 'react-toastify/dist/ReactToastify.css';
 import { motion } from 'framer-motion';
-const genAI = new GoogleGenerativeAI("AIzaSyBBm2aTU0Le0nFQykj_hbirRhNCW73Yl4g");
+const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GOOGLE_API_KEY);
+
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 export default function SummaryPage() {
@@ -32,7 +33,8 @@ export default function SummaryPage() {
     setLoading(true);
     setTranscript('');
     try {
-      const response = await axios.post('https://devsecops-uiud.onrender.com', {
+      const response = await axios.post(process.env.NEXT_PUBLIC_API_URL, {
+
         youtubeLink,
       });
       setTranscript(response.data.transcript);
@@ -53,7 +55,8 @@ export default function SummaryPage() {
     setLoading(true);
     setSummary('');
     try {
-      const response = await axios.post('https://devsecops-uiud.onrender.com', {
+      const response = await axios.post(process.env.NEXT_PUBLIC_API_URL, {
+
         youtubeLink,
       });
       setSummary(response.data.summary);
