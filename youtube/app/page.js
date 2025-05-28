@@ -32,7 +32,7 @@ export default function SummaryPage() {
     setLoading(true);
     setTranscript('');
     try {
-      const response = await axios.post('http://localhost:8000/transcript', {
+      const response = await axios.post('https://devsecops-uiud.onrender.com', {
         youtubeLink,
       });
       setTranscript(response.data.transcript);
@@ -53,7 +53,7 @@ export default function SummaryPage() {
     setLoading(true);
     setSummary('');
     try {
-      const response = await axios.post('http://localhost:8000/summarize', {
+      const response = await axios.post('https://devsecops-uiud.onrender.com', {
         youtubeLink,
       });
       setSummary(response.data.summary);
